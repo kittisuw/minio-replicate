@@ -29,3 +29,41 @@ wget https://dl.min.io/server/minio/release/linux-amd64/minio_20220611195532.0.0
 #Install the downloaded file
 sudo dpkg -i minio_20220611195532.0.0_amd64.deb
 ```
+# Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File
+```shell
+#Create a system group that the MinIO server will run
+sudo groupadd -r minio-user
+
+#Create the user that the MinIO server will run
+sudo useradd -M -r -g minio-user minio-user
+
+#Create the data directory where MinIO will store
+sudo mkdir /mnt/data
+#Give ownership of the data directory to the MinIO user and group
+sudo chown minio-user:minio-user /mnt/data
+
+#Create and open MinIO’s environment file:
+sudo vi /etc/default/minio
+```
+File : /etc/default/minio
+```
+MINIO_VOLUMES="/mnt/data"
+MINIO_OPTS="--console-address :9001"
+MINIO_ROOT_USER=minioadmin
+MINIO_ROOT_PASSWORD=minioadmin
+```
+# Step 3 — Setting the Firewall to Allow MinIO Traffic
+In this step, you will configure the firewall to allow traffic into the ports that access the MinIO server and MinIO Console. The following are pertinent to MinIO:
+- 9000 is the default port that the MinIO server listens on.
+- 9001 is the recommended port for accessing the MinIO Console.
+
+Allow traffic to both ports through the firewall with the following command:
+```shell
+sudo ufw allow 9000:9001/tcp
+```
+Output: 
+```shell
+Output
+Rule added
+Rule added (v6)
+```
