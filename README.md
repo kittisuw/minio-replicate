@@ -1,4 +1,4 @@
-# How To Set Up MinIO Object Storage Server replicate Mode on Ubuntu 20.04 LTS
+# How To Set Up MinIO Object Storage Server Site Replication on Ubuntu 20.04 LTS
 # Step 0 — Pre-requisite
 ## 0.1 - Prepare server
 ```shell
@@ -157,3 +157,7 @@ mcli ls poc-minio-02
 mcli rm --recursive --versions --force poc-minio-01/bucket1
 mcli ls poc-minio-01
 ```
+
+Reference : 
+Multi-Site Active-Active Replication: https://blog.min.io/minio-multi-site-active-active-replication/
+How to use Replication to protect data from storage failures: https://youtu.be/gFlif9RGeHg
