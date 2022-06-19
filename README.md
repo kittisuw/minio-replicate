@@ -128,8 +128,8 @@ Output:
 SiteReplication enabled for:
 
 Deployment ID                        | Site Name       | Endpoint
-87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | poc-minio-01    | https://10.50.128.8:9000
-81879d23-f001-4c25-a634-4202a0434a79 | poc-minio-02    | https://10.50.128.9:9000
+87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | poc-minio-01    | http://10.50.128.8:9000
+81879d23-f001-4c25-a634-4202a0434a79 | poc-minio-02    | http://10.50.128.9:9000
 ```
 ```shell
 mcli admin replicate info poc-minio-02
@@ -139,6 +139,6 @@ Output:
 SiteReplication enabled for:
 
 Deployment ID                        | Site Name       | Endpoint
-87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | poc-minio-01    | https://10.50.128.8:9000
-81879d23-f001-4c25-a634-4202a0434a79 | poc-minio-02    | https://10.50.128.9:9000
+87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | poc-minio-01    | http://10.50.128.8:9000
+81879d23-f001-4c25-a634-4202a0434a79 | poc-minio-02    | http://10.50.128.9:9000
 ```
