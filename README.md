@@ -114,3 +114,31 @@ mcli --insecure admin info poc-minio-02
    Drives: 1/1 OK
    Pool: 1st
 ```
+Step 7 — Setup Replicate   
+7.1 Set Replicate
+```shell
+ mcli admin replicate add poc-minio-01 poc-minio-02
+```
+7.2 Check replicate status
+```shell
+mcli admin replicate info poc-minio-01
+```
+Output:
+```shell
+SiteReplication enabled for:
+
+Deployment ID                        | Site Name       | Endpoint
+87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | poc-minio-01    | https://10.50.128.8:9000
+81879d23-f001-4c25-a634-4202a0434a79 | poc-minio-02    | https://10.50.128.9:9000
+```
+```shell
+mcli admin replicate info poc-minio-02
+```
+Output:
+```shell
+SiteReplication enabled for:
+
+Deployment ID                        | Site Name       | Endpoint
+87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | poc-minio-01    | https://10.50.128.8:9000
+81879d23-f001-4c25-a634-4202a0434a79 | poc-minio-02    | https://10.50.128.9:9000
+```
