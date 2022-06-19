@@ -160,3 +160,4 @@ mcli ls poc-minio-01
 # Reference
 Multi-Site Active-Active Replication: https://blog.min.io/minio-multi-site-active-active-replication/   
 How to use Replication to protect data from storage failures: https://youtu.be/gFlif9RGeHg
+Side replicate overview : https://docs.min.io/minio/baremetal/replication/site-replication-overview.html#minio-site-replication-overview
