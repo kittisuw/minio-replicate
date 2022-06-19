@@ -142,3 +142,18 @@ Deployment ID                        | Site Name       | Endpoint
 87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | poc-minio-01    | http://10.50.128.8:9000
 81879d23-f001-4c25-a634-4202a0434a79 | poc-minio-02    | http://10.50.128.9:9000
 ```
+Step 8 — Testing replicate
+```shell
+#Test Create bucket and object
+touch test.txt
+mcli mb poc-minio-01/bucket1
+mcli cp test.txt poc-minio-01/bucket1
+mcli ls poc-minio-01
+[2022-06-16 09:44:19 UTC]     0B bucket1/
+mcli ls poc-minio-02
+[2022-06-16 09:44:19 UTC]     0B bucket1/
+
+#Test Delete object in bucket
+mcli rm --recursive --versions --force poc-minio-01/bucket1
+mcli ls poc-minio-01
+```
