@@ -1,4 +1,4 @@
-# How To Set Up MinIO Object Storage Server Site Replication on Ubuntu 20.04 LTS
+# How To Set Up MinIO Object Storage Server Site Active-Active Replication on Ubuntu 20.04 LTS
 # Step 0 — Pre-requisite
 ## 0.1 - Prepare server
 ```shell
@@ -79,7 +79,7 @@ Point your browser to https://your-server-ip:9001.
 http://poc-minio-01.blockfint.com:9001
 http://poc-minio-02.blockfint.com:9001
 ```
-Step 6 — Installing and Using the MinIO Client on poc-minio-01
+# Step 6 — Installing and Using the MinIO Client on poc-minio-01
 ```shell
 #Download the latest MinIO client
 wget https://dl.min.io/client/mc/release/linux-amd64/mcli_20220611211036.0.0_amd64.deb
@@ -114,7 +114,7 @@ mcli --insecure admin info poc-minio-02
    Drives: 1/1 OK
    Pool: 1st
 ```
-Step 7 — Setup Replicate   
+# Step 7 — Setup Replicate   
 7.1 Set Replicate
 ```shell
  mcli admin replicate add poc-minio-01 poc-minio-02
