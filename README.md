@@ -67,3 +67,15 @@ Output
 Rule added
 Rule added (v6)
 ```
+Step 4 — Starting the MinIO Server
+```shell
+sudo systemctl start minio
+sudo systemctl status minio
+```
+
+Step 5 — Connecting to MinIO Server via the MinIO Console
+Point your browser to https://your-server-ip:9001.
+```shell
+http://poc-minio-01.blockfint.com:9001
+http://poc-minio-02.blockfint.com:9001
+```
