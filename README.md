@@ -157,7 +157,6 @@ mcli ls poc-minio-02
 mcli rm --recursive --versions --force poc-minio-01/bucket1
 mcli ls poc-minio-01
 ```
-
-Reference : 
-Multi-Site Active-Active Replication: https://blog.min.io/minio-multi-site-active-active-replication/
+# Reference
+Multi-Site Active-Active Replication: https://blog.min.io/minio-multi-site-active-active-replication/   
 How to use Replication to protect data from storage failures: https://youtu.be/gFlif9RGeHg
