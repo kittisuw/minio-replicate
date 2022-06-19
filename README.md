@@ -73,9 +73,44 @@ sudo systemctl start minio
 sudo systemctl status minio
 ```
 
-Step 5 — Connecting to MinIO Server via the MinIO Console
+Step 5 — Connecting to MinIO Server via the MinIO Console   
 Point your browser to https://your-server-ip:9001.
 ```shell
 http://poc-minio-01.blockfint.com:9001
 http://poc-minio-02.blockfint.com:9001
+```
+Step 6 — Installing and Using the MinIO Client on poc-minio-01
+```shell
+#Download the latest MinIO client
+wget https://dl.min.io/client/mc/release/linux-amd64/mcli_20220611211036.0.0_amd64.deb
+#Install
+sudo dpkg -i mcli_20220611211036.0.0_amd64.deb
+
+#Enable autocompletion for your shell
+mcli --autocompletion
+#To enable autocompletion in your current shell without actually shutting it down and restarting it
+source .profile
+
+#Add minio server profile to mcli
+mcli alias set poc-minio-01/ http://10.50.128.8:9000 minioadmin minioadmin
+mcli alias set poc-minio-02/ http://10.50.128.9:9000 minioadmin minioadmin
+
+#Verfity
+mcli --insecure admin info poc-minio-01
+●  10.50.128.8:9000
+   Uptime: 34 minutes
+   Version: 2022-06-11T19:55:32Z
+   Network: 1/1 OK
+   Drives: 1/1 OK
+   Pool: 1st
+
+1 drive online, 0 drives offline
+
+mcli --insecure admin info poc-minio-02
+●  10.50.128.9:9000
+   Uptime: 12 minutes
+   Version: 2022-06-11T19:55:32Z
+   Network: 1/1 OK
+   Drives: 1/1 OK
+   Pool: 1st
 ```
