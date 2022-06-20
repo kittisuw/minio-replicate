@@ -1,6 +1,6 @@
 # How To Set Up MinIO Object Storage Server Site Active-Active Replication on Ubuntu 20.04 LTS
 ## Table of contents
-  - [Pre-requisite](#step-0—pre-requisite)
+  - [Pre-requisite](#pre-requisite)
   - [Step 1 — Downloading and Installing the MinIO Server](#step-1--downloading-and-installing-the-minio-server-poc-minio-01-poc-minio-02)
   - [Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File](#step-2--creating-the-minio-user-group-data-directory-and-environment-file--poc-minio-01-poc-minio-02)
   - [Step 3 — Setting the Firewall to Allow MinIO Traffic](#step-3--setting-the-firewall-to-allow-minio-traffic--poc-minio-01-poc-minio-02)
@@ -20,8 +20,8 @@ poc-minio-02 10.50.128.9 52.148.71.42
 ```
 0.2 Config Domain name @Cloudflare
 ```shell
-poc-minio-01.blockfint.com 40.65.137.16
-poc-minio-02.blockfint.com 52.148.71.42
+poc-minio-01.yourdomain.com 40.65.137.16
+poc-minio-02.yourdomain.com 52.148.71.42
 ```
 0.3 Setup timezone and sync @poc-minio-01, poc-minio-02
 ```shell
@@ -92,8 +92,8 @@ sudo systemctl status minio
 ## Step 5 — Connecting to MinIO Server via the MinIO Console  
 Point your browser to http://your-server-ip:9001.
 ```shell
-http://poc-minio-01.blockfint.com:9001
-http://poc-minio-02.blockfint.com:9001
+http://poc-minio-01.yourdomain.com:9001
+http://poc-minio-02.yourdomain.com:9001
 ```
 ## Step 6 — Installing and Using the MinIO Client @poc-minio-01
 ```shell
@@ -185,7 +185,7 @@ cd /etc/nginx/conf.d
 vi minio.conf
 ---
 server {
-    server_name poc-minio-0x.blockfint.com;
+    server_name poc-minio-0x.yourdomain.com;
     charset utf-8;
     client_max_body_size 100M;
     location / {
@@ -217,9 +217,9 @@ sudo nginx -s reload
 ```shell
 sudo apt install certbot python3-certbot-nginx
 ```
-9.5 turning on HTTPS access for poc-minio-01.blockfint.com 
+9.5 turning on HTTPS access for poc-minio-01.yourdomain.com 
 ```shell
-sudo certbot --nginx -d poc-minio-01.blockfint.com
+sudo certbot --nginx -d poc-minio-01.yourdomain.com
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Plugins selected: Authenticator nginx, Installer nginx
 Enter email address (used for urgent renewal and security notices) (Enter 'c' to
@@ -242,7 +242,7 @@ encrypting the web, EFF news, campaigns, and ways to support digital freedom.
 (Y)es/(N)o: Y
 Obtaining a new certificate
 Performing the following challenges:
-http-01 challenge for poc-minio-01.blockfint.com
+http-01 challenge for poc-minio-01.yourdomain.com
 Waiting for verification...
 Cleaning up challenges
 Deploying Certificate to VirtualHost /etc/nginx/conf.d/minio.conf
@@ -259,10 +259,10 @@ Redirecting all traffic on port 80 to ssl in /etc/nginx/conf.d/minio.conf
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Congratulations! You have successfully enabled
-https://poc-minio-01.blockfint.com
+https://poc-minio-01.yourdomain.com
 
 You should test your configuration at:
-https://www.ssllabs.com/ssltest/analyze.html?d=poc-minio-01.blockfint.com
+https://www.ssllabs.com/ssltest/analyze.html?d=poc-minio-01.yourdomain.com
 ...
 ```
 > This step require open port 80,443 to public
@@ -277,11 +277,11 @@ Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Found the following certs:
-  Certificate Name: poc-minio-01.blockfint.com
-    Domains: poc-minio-01.blockfint.com
+  Certificate Name: poc-minio-01.yourdomain.com
+    Domains: poc-minio-01.yourdomain.com
     Expiry Date: 2022-09-18 05:32:52+00:00 (VALID: 89 days)
-    Certificate Path: /etc/letsencrypt/live/poc-minio-01.blockfint.com/fullchain.pem
-    Private Key Path: /etc/letsencrypt/live/poc-minio-01.blockfint.com/privkey.pem
+    Certificate Path: /etc/letsencrypt/live/poc-minio-01.yourdomain.com/fullchain.pem
+    Private Key Path: /etc/letsencrypt/live/poc-minio-01.yourdomain.com/privkey.pem
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 9.7 Test automatic renewal
@@ -293,19 +293,19 @@ sudo certbot renew --dry-run
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Processing /etc/letsencrypt/renewal/poc-minio-01.blockfint.com.conf
+Processing /etc/letsencrypt/renewal/poc-minio-01.yourdomain.com.conf
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Cert not due for renewal, but simulating renewal for dry run
 Plugins selected: Authenticator nginx, Installer nginx
 Renewing an existing certificate
 Performing the following challenges:
-http-01 challenge for poc-minio-01.blockfint.com
+http-01 challenge for poc-minio-01.yourdomain.com
 Waiting for verification...
 Cleaning up challenges
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 new certificate deployed with reload of nginx server; fullchain is
-/etc/letsencrypt/live/poc-minio-01.blockfint.com/fullchain.pem
+/etc/letsencrypt/live/poc-minio-01.yourdomain.com/fullchain.pem
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -313,14 +313,14 @@ new certificate deployed with reload of nginx server; fullchain is
 **          (The test certificates below have not been saved.)
 
 Congratulations, all renewals succeeded. The following certs have been renewed:
-  /etc/letsencrypt/live/poc-minio-01.blockfint.com/fullchain.pem (success)
+  /etc/letsencrypt/live/poc-minio-01.yourdomain.com/fullchain.pem (success)
 ** DRY RUN: simulating 'certbot renew' close to cert expiry
 **          (The test certificates above have not been saved.)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 9.7 Test brow to URL if success http will be redirect to https and poit to MinIO CONSOLE   
-http://poc-minio-01.blockfint.com   
-http://poc-minio-02.blockfint.com
+http://poc-minio-01.yourdomain.com   
+http://poc-minio-02.yourdomain.com
 
 # Reference
 Multi-Site Active-Active Replication: https://blog.min.io/minio-multi-site-active-active-replication/   
