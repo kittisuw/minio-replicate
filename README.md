@@ -1,15 +1,15 @@
 # How To Set Up MinIO Object Storage Server Site Active-Active Replication on Ubuntu 20.04 LTS
 ## Table of contents
   - [Pre-requisite](#pre-requisite)
-  - [Step 1 — Downloading and Installing the MinIO Server](#step-1--downloading-and-installing-the-minio-server-minio-01-minio-02)
-  - [Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File](#step-2--creating-the-minio-user-group-data-directory-and-environment-file--minio-01-minio-02)
-  - [Step 3 — Setting the Firewall to Allow MinIO Traffic](#step-3--setting-the-firewall-to-allow-minio-traffic--minio-01-minio-02)
-  - [Step 4 — Starting the MinIO Server](#step-4--starting-the-minio-server--minio-01-minio-02)
+  - [Step 1 — Downloading and Installing the MinIO Server](#step-1--downloading-and-installing-the-minio-server)
+  - [Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File](#step-2--creating-the-minio-user-group-data-directory-and-environment-file)
+  - [Step 3 — Setting the Firewall to Allow MinIO Traffic](#step-3--setting-the-firewall-to-allow-minio-traffic)
+  - [Step 4 — Starting the MinIO Server](#step-4--starting-the-minio-server)
   - [Step 5 — Connecting to MinIO Server via the MinIO Console](#step-5--connecting-to-minio-server-via-the-minio-console)
-  - [Step 6 — Installing and Using the MinIO Client](#step-6--installing-and-using-the-minio-client-minio-01)
-  - [Step 7 — Setup Replicate](#step-7--setup-replicate--minio-01)
-  - [Step 8 — Testing replicate](#step-8--testing-replicate--minio-01)
-  - [Step 9 Setup secure connect to MinIO Console](#step-9-setup-secure-connect-to-minio-console-minio-01-minio-02)
+  - [Step 6 — Installing and Using the MinIO Client](#step-6--installing-and-using-the-minio-client)
+  - [Step 7 — Setup Replicate](#step-7--setup-replicate)
+  - [Step 8 — Testing replicate](#step-8--testing-replicate)
+  - [Step 9 Setup secure connect to MinIO Console](#step-9-setup-secure-connect-to-minio-console)
 ## Pre-requisite
 @minio-01,02      
 0.1 Prepare server
