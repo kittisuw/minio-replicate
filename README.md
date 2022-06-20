@@ -301,8 +301,9 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 **          (The test certificates above have not been saved.)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
-
-
+9.7 Test brow to URL if success http will be redirect to https and poit to MinIO CONSOLE   
+http://poc-minio-01.blockfint.com
+http://poc-minio-02.blockfint.com
 
 # Reference
 Multi-Site Active-Active Replication: https://blog.min.io/minio-multi-site-active-active-replication/   
