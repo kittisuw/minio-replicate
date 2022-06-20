@@ -157,7 +157,7 @@ mcli ls poc-minio-02
 mcli rm --recursive --versions --force poc-minio-01/bucket1
 mcli ls poc-minio-01
 ```
-# Step 9 Secure to CONSOLE
+# Step 9 Setup secure connect to MinIO Console
 9.1 Install nginx
 ```shell
 sudo apt install nginx
@@ -247,21 +247,12 @@ https://www.ssllabs.com/ssltest/analyze.html?d=poc-minio-01.blockfint.com
 ...
 ```
 > This step require open port 80,443 to public
-9.6
+9.6 Check current certificae
 ```shell
-```
-
-
-# Reference
-Multi-Site Active-Active Replication: https://blog.min.io/minio-multi-site-active-active-replication/   
-How to use Replication to protect data from storage failures: https://youtu.be/gFlif9RGeHg   
-Side replicate overview : https://docs.min.io/minio/baremetal/replication/site-replication-overview.html#minio-site-replication-overview
-
-
-
-
-```
 sudo certbot certificates
+```
+Output:
+```shell
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -273,3 +264,10 @@ Found the following certs:
     Private Key Path: /etc/letsencrypt/live/poc-minio-01.blockfint.com/privkey.pem
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
+
+
+
+# Reference
+Multi-Site Active-Active Replication: https://blog.min.io/minio-multi-site-active-active-replication/   
+How to use Replication to protect data from storage failures: https://youtu.be/gFlif9RGeHg   
+Side replicate overview : https://docs.min.io/minio/baremetal/replication/site-replication-overview.html#minio-site-replication-overview
