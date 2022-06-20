@@ -1,29 +1,29 @@
 # How To Set Up MinIO Object Storage Server Site Active-Active Replication on Ubuntu 20.04 LTS
 ## Table of contents
   - [Pre-requisite](#pre-requisite)
-  - [Step 1 — Downloading and Installing the MinIO Server](#step-1--downloading-and-installing-the-minio-server-poc-minio-01-poc-minio-02)
-  - [Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File](#step-2--creating-the-minio-user-group-data-directory-and-environment-file--poc-minio-01-poc-minio-02)
-  - [Step 3 — Setting the Firewall to Allow MinIO Traffic](#step-3--setting-the-firewall-to-allow-minio-traffic--poc-minio-01-poc-minio-02)
-  - [Step 4 — Starting the MinIO Server](#step-4--starting-the-minio-server--poc-minio-01-poc-minio-02)
+  - [Step 1 — Downloading and Installing the MinIO Server](#step-1--downloading-and-installing-the-minio-server-minio-01-minio-02)
+  - [Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File](#step-2--creating-the-minio-user-group-data-directory-and-environment-file--minio-01-minio-02)
+  - [Step 3 — Setting the Firewall to Allow MinIO Traffic](#step-3--setting-the-firewall-to-allow-minio-traffic--minio-01-minio-02)
+  - [Step 4 — Starting the MinIO Server](#step-4--starting-the-minio-server--minio-01-minio-02)
   - [Step 5 — Connecting to MinIO Server via the MinIO Console](#step-5--connecting-to-minio-server-via-the-minio-console)
-  - [Step 6 — Installing and Using the MinIO Client](#step-6--installing-and-using-the-minio-client-poc-minio-01)
-  - [Step 7 — Setup Replicate](#step-7--setup-replicate--poc-minio-01)
-  - [Step 8 — Testing replicate](#step-8--testing-replicate--poc-minio-01)
-  - [Step 9 Setup secure connect to MinIO Console](#step-9-setup-secure-connect-to-minio-console-poc-minio-01-poc-minio-02)
+  - [Step 6 — Installing and Using the MinIO Client](#step-6--installing-and-using-the-minio-client-minio-01)
+  - [Step 7 — Setup Replicate](#step-7--setup-replicate--minio-01)
+  - [Step 8 — Testing replicate](#step-8--testing-replicate--minio-01)
+  - [Step 9 Setup secure connect to MinIO Console](#step-9-setup-secure-connect-to-minio-console-minio-01-minio-02)
 ## Pre-requisite
 0.1 Prepare server
 ```shell
 #OS Ubuntu 20.04 LTS
 #server-name private-ip public-ip 
-poc-minio-01 10.50.128.8 40.65.137.16
-poc-minio-02 10.50.128.9 52.148.71.42
+minio-01 10.50.128.8 40.65.137.16
+minio-02 10.50.128.9 52.148.71.42
 ```
 0.2 Config Domain name @Cloudflare
 ```shell
-poc-minio-01.yourdomain.com 40.65.137.16
-poc-minio-02.yourdomain.com 52.148.71.42
+minio-01.yourdomain.com 40.65.137.16
+minio-02.yourdomain.com 52.148.71.42
 ```
-0.3 Setup timezone and sync @poc-minio-01, poc-minio-02
+0.3 Setup timezone and sync @minio-01, minio-02
 ```shell
 change timezone to asia/bangkok
 sudo timedatectl set-timezone Asia/Bangkok
@@ -34,7 +34,7 @@ sudo systemctl start chronyd
 #check date-time
 sudo timedatectl
 ```
-## Step 1 — Downloading and Installing the MinIO Server @poc-minio-01, poc-minio-02
+## Step 1 — Downloading and Installing the MinIO Server @minio-01, minio-02
 ```shell
 #Update the package database
 sudo apt update
@@ -45,7 +45,7 @@ wget https://dl.min.io/server/minio/release/linux-amd64/minio_20220611195532.0.0
 #Install the downloaded file
 sudo dpkg -i minio_20220611195532.0.0_amd64.deb
 ```
-## Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File  @poc-minio-01, poc-minio-02
+## Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File  @minio-01, minio-02
 ```shell
 #Create a system group that the MinIO server will run
 sudo groupadd -r minio-user
@@ -68,7 +68,7 @@ MINIO_OPTS="--console-address :9001"
 MINIO_ROOT_USER=minioadmin
 MINIO_ROOT_PASSWORD=minioadmin
 ```
-## Step 3 — Setting the Firewall to Allow MinIO Traffic  @poc-minio-01, poc-minio-02
+## Step 3 — Setting the Firewall to Allow MinIO Traffic  @minio-01, minio-02
 In this step, you will configure the firewall to allow traffic into the ports that access the MinIO server and MinIO Console. The following are pertinent to MinIO:
 - 9000 is the default port that the MinIO server listens on.
 - 9001 is the recommended port for accessing the MinIO Console.
@@ -83,7 +83,7 @@ Output
 Rule added
 Rule added (v6)
 ```
-## Step 4 — Starting the MinIO Server  @poc-minio-01, poc-minio-02
+## Step 4 — Starting the MinIO Server  @minio-01, minio-02
 ```shell
 sudo systemctl start minio
 sudo systemctl status minio
@@ -92,10 +92,10 @@ sudo systemctl status minio
 ## Step 5 — Connecting to MinIO Server via the MinIO Console  
 Point your browser to http://your-server-ip:9001.
 ```shell
-http://poc-minio-01.yourdomain.com:9001
-http://poc-minio-02.yourdomain.com:9001
+http://minio-01.yourdomain.com:9001
+http://minio-02.yourdomain.com:9001
 ```
-## Step 6 — Installing and Using the MinIO Client @poc-minio-01
+## Step 6 — Installing and Using the MinIO Client @minio-01
 ```shell
 #Download the latest MinIO client
 wget https://dl.min.io/client/mc/release/linux-amd64/mcli_20220611211036.0.0_amd64.deb
@@ -108,11 +108,11 @@ mcli --autocompletion
 source .profile
 
 #Add minio server profile to mcli
-mcli alias set poc-minio-01/ http://10.50.128.8:9000 minioadmin minioadmin
-mcli alias set poc-minio-02/ http://10.50.128.9:9000 minioadmin minioadmin
+mcli alias set minio-01/ http://10.50.128.8:9000 minioadmin minioadmin
+mcli alias set minio-02/ http://10.50.128.9:9000 minioadmin minioadmin
 
 #Verfity
-mcli --insecure admin info poc-minio-01
+mcli --insecure admin info minio-01
 ●  10.50.128.8:9000
    Uptime: 34 minutes
    Version: 2022-06-11T19:55:32Z
@@ -122,7 +122,7 @@ mcli --insecure admin info poc-minio-01
 
 1 drive online, 0 drives offline
 
-mcli --insecure admin info poc-minio-02
+mcli --insecure admin info minio-02
 ●  10.50.128.9:9000
    Uptime: 12 minutes
    Version: 2022-06-11T19:55:32Z
@@ -130,50 +130,50 @@ mcli --insecure admin info poc-minio-02
    Drives: 1/1 OK
    Pool: 1st
 ```
-## Step 7 — Setup Replicate  @poc-minio-01 
+## Step 7 — Setup Replicate  @minio-01 
 7.1 Set Replicate
 ```shell
- mcli admin replicate add poc-minio-01 poc-minio-02
+ mcli admin replicate add minio-01 minio-02
 ```
 7.2 Check replicate status
 ```shell
-mcli admin replicate info poc-minio-01
+mcli admin replicate info minio-01
 ```
 Output:
 ```shell
 SiteReplication enabled for:
 
 Deployment ID                        | Site Name       | Endpoint
-87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | poc-minio-01    | http://10.50.128.8:9000
-81879d23-f001-4c25-a634-4202a0434a79 | poc-minio-02    | http://10.50.128.9:9000
+87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | minio-01    | http://10.50.128.8:9000
+81879d23-f001-4c25-a634-4202a0434a79 | minio-02    | http://10.50.128.9:9000
 ```
 ```shell
-mcli admin replicate info poc-minio-02
+mcli admin replicate info minio-02
 ```
 Output:
 ```shell
 SiteReplication enabled for:
 
 Deployment ID                        | Site Name       | Endpoint
-87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | poc-minio-01    | http://10.50.128.8:9000
-81879d23-f001-4c25-a634-4202a0434a79 | poc-minio-02    | http://10.50.128.9:9000
+87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | minio-01    | http://10.50.128.8:9000
+81879d23-f001-4c25-a634-4202a0434a79 | minio-02    | http://10.50.128.9:9000
 ```
-## Step 8 — Testing replicate  @poc-minio-01
+## Step 8 — Testing replicate  @minio-01
 ```shell
 #Test Create bucket and object
 touch test.txt
-mcli mb poc-minio-01/bucket1
-mcli cp test.txt poc-minio-01/bucket1
-mcli ls poc-minio-01
+mcli mb minio-01/bucket1
+mcli cp test.txt minio-01/bucket1
+mcli ls minio-01
 [2022-06-16 09:44:19 UTC]     0B bucket1/
-mcli ls poc-minio-02
+mcli ls minio-02
 [2022-06-16 09:44:19 UTC]     0B bucket1/
 
 #Test Delete object in bucket
-mcli rm --recursive --versions --force poc-minio-01/bucket1
-mcli ls poc-minio-01
+mcli rm --recursive --versions --force minio-01/bucket1
+mcli ls minio-01
 ```
-## Step 9 Setup secure connect to MinIO Console @poc-minio-01, poc-minio-02
+## Step 9 Setup secure connect to MinIO Console @minio-01, minio-02
 9.1 Install nginx
 ```shell
 sudo apt install nginx
@@ -217,9 +217,9 @@ sudo nginx -s reload
 ```shell
 sudo apt install certbot python3-certbot-nginx
 ```
-9.5 turning on HTTPS access for poc-minio-01.yourdomain.com 
+9.5 turning on HTTPS access for minio-01.yourdomain.com 
 ```shell
-sudo certbot --nginx -d poc-minio-01.yourdomain.com
+sudo certbot --nginx -d minio-01.yourdomain.com
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Plugins selected: Authenticator nginx, Installer nginx
 Enter email address (used for urgent renewal and security notices) (Enter 'c' to
@@ -242,7 +242,7 @@ encrypting the web, EFF news, campaigns, and ways to support digital freedom.
 (Y)es/(N)o: Y
 Obtaining a new certificate
 Performing the following challenges:
-http-01 challenge for poc-minio-01.yourdomain.com
+http-01 challenge for minio-01.yourdomain.com
 Waiting for verification...
 Cleaning up challenges
 Deploying Certificate to VirtualHost /etc/nginx/conf.d/minio.conf
@@ -259,10 +259,10 @@ Redirecting all traffic on port 80 to ssl in /etc/nginx/conf.d/minio.conf
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Congratulations! You have successfully enabled
-https://poc-minio-01.yourdomain.com
+https://minio-01.yourdomain.com
 
 You should test your configuration at:
-https://www.ssllabs.com/ssltest/analyze.html?d=poc-minio-01.yourdomain.com
+https://www.ssllabs.com/ssltest/analyze.html?d=minio-01.yourdomain.com
 ...
 ```
 > This step require open port 80,443 to public
@@ -277,11 +277,11 @@ Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Found the following certs:
-  Certificate Name: poc-minio-01.yourdomain.com
-    Domains: poc-minio-01.yourdomain.com
+  Certificate Name: minio-01.yourdomain.com
+    Domains: minio-01.yourdomain.com
     Expiry Date: 2022-09-18 05:32:52+00:00 (VALID: 89 days)
-    Certificate Path: /etc/letsencrypt/live/poc-minio-01.yourdomain.com/fullchain.pem
-    Private Key Path: /etc/letsencrypt/live/poc-minio-01.yourdomain.com/privkey.pem
+    Certificate Path: /etc/letsencrypt/live/minio-01.yourdomain.com/fullchain.pem
+    Private Key Path: /etc/letsencrypt/live/minio-01.yourdomain.com/privkey.pem
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 9.7 Test automatic renewal
@@ -293,19 +293,19 @@ sudo certbot renew --dry-run
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Processing /etc/letsencrypt/renewal/poc-minio-01.yourdomain.com.conf
+Processing /etc/letsencrypt/renewal/minio-01.yourdomain.com.conf
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Cert not due for renewal, but simulating renewal for dry run
 Plugins selected: Authenticator nginx, Installer nginx
 Renewing an existing certificate
 Performing the following challenges:
-http-01 challenge for poc-minio-01.yourdomain.com
+http-01 challenge for minio-01.yourdomain.com
 Waiting for verification...
 Cleaning up challenges
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 new certificate deployed with reload of nginx server; fullchain is
-/etc/letsencrypt/live/poc-minio-01.yourdomain.com/fullchain.pem
+/etc/letsencrypt/live/minio-01.yourdomain.com/fullchain.pem
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -313,14 +313,14 @@ new certificate deployed with reload of nginx server; fullchain is
 **          (The test certificates below have not been saved.)
 
 Congratulations, all renewals succeeded. The following certs have been renewed:
-  /etc/letsencrypt/live/poc-minio-01.yourdomain.com/fullchain.pem (success)
+  /etc/letsencrypt/live/minio-01.yourdomain.com/fullchain.pem (success)
 ** DRY RUN: simulating 'certbot renew' close to cert expiry
 **          (The test certificates above have not been saved.)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 9.7 Test brow to URL if success http will be redirect to https and poit to MinIO CONSOLE   
-http://poc-minio-01.yourdomain.com   
-http://poc-minio-02.yourdomain.com
+http://minio-01.yourdomain.com   
+http://minio-02.yourdomain.com
 
 # Reference
 Multi-Site Active-Active Replication: https://blog.min.io/minio-multi-site-active-active-replication/   
