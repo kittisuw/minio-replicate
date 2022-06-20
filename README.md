@@ -1,7 +1,7 @@
 # How To Set Up MinIO Object Storage Server Site Active-Active Replication on Ubuntu 20.04 LTS
 ## Table of contents
-  - [Prerequisites](#1)
-  - [Step 1 - Prepare node for RKE](#2)
+  - [Prerequisites](#step-0—pre-requisite)
+  - [Step 1 - Prepare node for RKE](#step-1-downloading-and-installing-the-minio-server)
   - [Step 2 - Prepare node for RKE Client](#3)
   - [Step 3 - Deploy the RKE cluster without the ingress controller](#step-3---deploy-the-rke-cluster-without-the-ingress-controller)
   - [Step 4 - Check RKE cluster](#step-4---check-rke-cluster)
