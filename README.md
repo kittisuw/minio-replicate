@@ -24,7 +24,7 @@ minio-02 10.50.128.9 52.148.71.42
 minio-01.yourdomain.com 40.65.137.16
 minio-02.yourdomain.com 52.148.71.42
 ```
-0.3 Setup timezone and sync @minio-01, minio-02
+0.3 Setup timezone and sync
 ```shell
 change timezone to asia/bangkok
 sudo timedatectl set-timezone Asia/Bangkok
@@ -35,7 +35,8 @@ sudo systemctl start chronyd
 #check date-time
 sudo timedatectl
 ```
-## Step 1 — Downloading and Installing the MinIO Server @minio-01, minio-02
+## Step 1 — Downloading and Installing the MinIO Server   
+@minio-[01,02]
 ```shell
 #Update the package database
 sudo apt update
