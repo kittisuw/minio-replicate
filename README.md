@@ -246,7 +246,7 @@ You should test your configuration at:
 https://www.ssllabs.com/ssltest/analyze.html?d=poc-minio-01.blockfint.com
 ...
 ```
-> This step require open port 80,443 to public
+> This step require open port 80,443 to public    
 9.6 Check current certificae
 ```shell
 sudo certbot certificates
