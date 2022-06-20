@@ -11,7 +11,7 @@
   - [Step 8 — Testing replicate](#step-8--testing-replicate--minio-01)
   - [Step 9 Setup secure connect to MinIO Console](#step-9-setup-secure-connect-to-minio-console-minio-01-minio-02)
 ## Pre-requisite
-@minio-01,02
+@minio-[01,02]      
 0.1 Prepare server
 ```shell
 #OS Ubuntu 20.04 LTS
