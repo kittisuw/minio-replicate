@@ -23,7 +23,7 @@ poc-minio-02 10.50.128.9 52.148.71.42
 poc-minio-01.blockfint.com 40.65.137.16
 poc-minio-02.blockfint.com 52.148.71.42
 ```
-0.2 Setup timezone and sync @[poc-minio-01, poc-minio-02]
+0.2 Setup timezone and sync @poc-minio-01, poc-minio-02
 ```shell
 change timezone to asia/bangkok
 sudo timedatectl set-timezone Asia/Bangkok
