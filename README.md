@@ -302,7 +302,7 @@ Congratulations, all renewals succeeded. The following certs have been renewed:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 9.7 Test brow to URL if success http will be redirect to https and poit to MinIO CONSOLE   
-http://poc-minio-01.blockfint.com
+http://poc-minio-01.blockfint.com   
 http://poc-minio-02.blockfint.com
 
 # Reference
