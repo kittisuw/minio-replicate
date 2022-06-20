@@ -161,11 +161,13 @@ mcli ls poc-minio-01
 9.1 Install nginx
 ```shell
 sudo apt install nginx
-cd /etc/nginx/conf.d
 ```
 9.2 Create nginx config
 File: minio.conf
-```
+```shell
+cd /etc/nginx/conf.d
+vi minio.conf
+---
 server {
     server_name poc-minio-01.blockfint.com;
     charset utf-8;
@@ -184,6 +186,7 @@ server {
         root  /usr/share/nginx/html;
     }
 }
+----
 ```
 9.3 Check and reload the new config
 ```shell
