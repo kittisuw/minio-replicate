@@ -182,6 +182,7 @@ mcli ls minio-01
 #Remove bucket
 mcli mb minio-01/bucket1
 ```
+> MinIO Client Complete Guide: https://nm-muzi.com/docs/minio-client-complete-guide.html
 ## Step 9 Setup secure connect to MinIO Console   
 @minio-01,02   
 9.1 Install nginx
