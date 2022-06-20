@@ -285,6 +285,7 @@ Found the following certs:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 9.7 Test automatic renewal
+> By default certificate will be valid for 90 days from the date of renewal and Certbot will be renewal every 12 Hrs.
 ```shell
 sudo certbot renew --dry-run
 ```
