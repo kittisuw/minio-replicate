@@ -196,7 +196,7 @@ cd /etc/nginx/conf.d
 vi minio.conf
 ---
 server {
-    server_name poc-minio-0x.yourdomain.com;
+    server_name minio-0x.yourdomain.com;
     charset utf-8;
     client_max_body_size 100M;
     location / {
