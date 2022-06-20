@@ -1,8 +1,8 @@
 # How To Set Up MinIO Object Storage Server Site Active-Active Replication on Ubuntu 20.04 LTS
 ## Table of contents
-  - [Prerequisites](#prerequisites)
-  - [Step 1 - Prepare node for RKE](#step-1---prepare-node-for-rke)
-  - [Step 2 - Prepare node for RKE Client](#step-2---prepare-node-for-rke-client)
+  - [Prerequisites](#1)
+  - [Step 1 - Prepare node for RKE](#2)
+  - [Step 2 - Prepare node for RKE Client](#3)
   - [Step 3 - Deploy the RKE cluster without the ingress controller](#step-3---deploy-the-rke-cluster-without-the-ingress-controller)
   - [Step 4 - Check RKE cluster](#step-4---check-rke-cluster)
   - [Step 5 - Deploy MetalLB](#step-5---deploy-metallb)
@@ -12,14 +12,14 @@
   - [Step 9 - Create Ingress resource](#step-9---create-ingress-resource)
 
 ## Step 0 — Pre-requisite
-### 0.1 - Prepare server
+0.1 - Prepare server
 ```shell
 #OS Ubuntu 20.04 LTS
 #server-name private-ip public-ip 
 poc-minio-01 10.50.128.8 40.65.137.16
 poc-minio-02 10.50.128.9 52.148.71.42
 ```
-### 0.2 Setup timezone and sync
+0.2 Setup timezone and sync
 ```shell
 change timezone to asia/bangkok
 sudo timedatectl set-timezone Asia/Bangkok
