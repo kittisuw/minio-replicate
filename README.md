@@ -6,7 +6,7 @@
   - [Step 3 — Setting the Firewall to Allow MinIO Traffic](#step-3--setting-the-firewall-to-allow-minio-traffic--poc-minio-01-poc-minio-02)
   - [Step 4 — Starting the MinIO Server](#step-4--starting-the-minio-server--poc-minio-01-poc-minio-02)
   - [Step 5 — Connecting to MinIO Server via the MinIO Console](#step-5--connecting-to-minio-server-via-the-minio-console)
-  - [Step 6 — Installing and Using the MinIO Client on poc-minio-01](#step-6--installing-and-using-the-minio-client-poc-minio-01)
+  - [Step 6 — Installing and Using the MinIO Client](#step-6--installing-and-using-the-minio-client-poc-minio-01)
   - [Step 7 — Setup Replicate](#step-7--setup-replicate--poc-minio-01)
   - [Step 8 — Testing replicate](#step-8--testing-replicate--poc-minio-01)
   - [Step 9 Setup secure connect to MinIO Console](#step-9-setup-secure-connect-to-minio-console-poc-minio-01-poc-minio-02)
