@@ -47,7 +47,8 @@ wget https://dl.min.io/server/minio/release/linux-amd64/minio_20220611195532.0.0
 #Install the downloaded file
 sudo dpkg -i minio_20220611195532.0.0_amd64.deb
 ```
-## Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File  @minio-01, minio-02
+## Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File   
+@minio-01,02
 ```shell
 #Create a system group that the MinIO server will run
 sudo groupadd -r minio-user
@@ -70,7 +71,8 @@ MINIO_OPTS="--console-address :9001"
 MINIO_ROOT_USER=minioadmin
 MINIO_ROOT_PASSWORD=minioadmin
 ```
-## Step 3 — Setting the Firewall to Allow MinIO Traffic  @minio-01, minio-02
+## Step 3 — Setting the Firewall to Allow MinIO Traffic   
+@minio-01,02   
 In this step, you will configure the firewall to allow traffic into the ports that access the MinIO server and MinIO Console. The following are pertinent to MinIO:
 - 9000 is the default port that the MinIO server listens on.
 - 9001 is the recommended port for accessing the MinIO Console.
@@ -85,19 +87,21 @@ Output
 Rule added
 Rule added (v6)
 ```
-## Step 4 — Starting the MinIO Server  @minio-01, minio-02
+## Step 4 — Starting the MinIO Server   
+@minio-01,02
 ```shell
 sudo systemctl start minio
 sudo systemctl status minio
 ```
 
 ## Step 5 — Connecting to MinIO Server via the MinIO Console  
-Point your browser to http://your-server-ip:9001.
+Point your browser to http://your-server-ip:9001
 ```shell
 http://minio-01.yourdomain.com:9001
 http://minio-02.yourdomain.com:9001
 ```
-## Step 6 — Installing and Using the MinIO Client @minio-01
+## Step 6 — Installing and Using the MinIO Client   
+@minio-01
 ```shell
 #Download the latest MinIO client
 wget https://dl.min.io/client/mc/release/linux-amd64/mcli_20220611211036.0.0_amd64.deb
@@ -132,7 +136,8 @@ mcli --insecure admin info minio-02
    Drives: 1/1 OK
    Pool: 1st
 ```
-## Step 7 — Setup Replicate  @minio-01 
+## Step 7 — Setup Replicate   
+@minio-01,02   
 7.1 Set Replicate
 ```shell
  mcli admin replicate add minio-01 minio-02
@@ -160,7 +165,8 @@ Deployment ID                        | Site Name       | Endpoint
 87f39e99-eef4-4bf5-acea-fcfdbc9e9ac8 | minio-01    | http://10.50.128.8:9000
 81879d23-f001-4c25-a634-4202a0434a79 | minio-02    | http://10.50.128.9:9000
 ```
-## Step 8 — Testing replicate  @minio-01
+## Step 8 — Testing replicate   
+@minio-01
 ```shell
 #Test Create bucket and object
 touch test.txt
@@ -175,7 +181,8 @@ mcli ls minio-02
 mcli rm --recursive --versions --force minio-01/bucket1
 mcli ls minio-01
 ```
-## Step 9 Setup secure connect to MinIO Console @minio-01, minio-02
+## Step 9 Setup secure connect to MinIO Console   
+@minio-01,02   
 9.1 Install nginx
 ```shell
 sudo apt install nginx
