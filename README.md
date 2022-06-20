@@ -1,8 +1,8 @@
 # How To Set Up MinIO Object Storage Server Site Active-Active Replication on Ubuntu 20.04 LTS
 ## Table of contents
   - [Pre-requisite](#step-0—pre-requisite)
-  - [Step 1 — Downloading and Installing the MinIO Server](#step-1-downloading-and-installing-the-minio-server)
-  - [Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File](#step-2-creating-the-minio-user-group-data-directory-and-environment-file)
+  - [Step 1 — Downloading and Installing the MinIO Server](#step-1--downloading-and-installing-the-minio-server)
+  - [Step 2 — Creating the MinIO User, Group, Data Directory, and Environment File](#step-2--creating-the-minio-user-group-data-directory-and-environment-file)
 ## Pre-requisite
 0.1 - Prepare server
 ```shell
