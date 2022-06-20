@@ -172,14 +172,15 @@ Deployment ID                        | Site Name       | Endpoint
 touch test.txt
 mcli mb minio-01/bucket1
 mcli cp test.txt minio-01/bucket1
-mcli ls minio-01
-[2022-06-16 09:44:19 UTC]     0B bucket1/
-mcli ls minio-02
-[2022-06-16 09:44:19 UTC]     0B bucket1/
-
+mcli ls minio-01/bucket1
+[2022-06-20 19:27:34 +07]     0B test.txt
+mcli ls minio-02/bucket1
+[2022-06-20 19:27:34 +07]     0B test.txt
 #Test Delete object in bucket
 mcli rm --recursive --versions --force minio-01/bucket1
 mcli ls minio-01
+#Remove bucket
+mcli mb minio-01/bucket1
 ```
 ## Step 9 Setup secure connect to MinIO Console   
 @minio-01,02   
