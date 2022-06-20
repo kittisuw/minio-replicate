@@ -166,7 +166,7 @@ Deployment ID                        | Site Name       | Endpoint
 81879d23-f001-4c25-a634-4202a0434a79 | minio-02    | http://10.50.128.9:9000
 ```
 ## Step 8 — Testing replicate   
-@minio-01
+@minio-01 server or MinIO CONSOLE
 ```shell
 #Test Create bucket and object
 touch test.txt
