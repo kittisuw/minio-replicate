@@ -1,4 +1,16 @@
 # How To Set Up MinIO Object Storage Server Site Active-Active Replication on Ubuntu 20.04 LTS
+## Table of contents
+  - [Prerequisites](#prerequisites)
+  - [Step 1 - Prepare node for RKE](#step-1---prepare-node-for-rke)
+  - [Step 2 - Prepare node for RKE Client](#step-2---prepare-node-for-rke-client)
+  - [Step 3 - Deploy the RKE cluster without the ingress controller](#step-3---deploy-the-rke-cluster-without-the-ingress-controller)
+  - [Step 4 - Check RKE cluster](#step-4---check-rke-cluster)
+  - [Step 5 - Deploy MetalLB](#step-5---deploy-metallb)
+  - [Step 6 - Install the cert manager](#step-6---install-the-cert-manager)
+  - [Step 7 - Install NGINX Ingress Controller](#step-7---install-nginx-ingress-controller)
+  - [Step 8 - Install Rancher](#step-8---install-rancher)
+  - [Step 9 - Create Ingress resource](#step-9---create-ingress-resource)
+
 # Step 0 — Pre-requisite
 ## 0.1 - Prepare server
 ```shell
