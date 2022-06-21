@@ -26,7 +26,7 @@ minio-02.yourdomain.com 52.148.71.42
 ```
 0.3 Setup timezone and sync
 ```shell
-change timezone to asia/bangkok
+#Change timezone to asia/bangkok
 sudo timedatectl set-timezone Asia/Bangkok
 #Install chrony
 sudo apt install chrony -y
